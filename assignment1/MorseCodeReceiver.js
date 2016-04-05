@@ -37,9 +37,14 @@
  * Output: You should return a boolean denoting whether or not the image is 
  *         an 'on' (red) signal.
  */
-function decodeCameraImage(data)
-{
-    // ADD YOUR CODE HERE
-
-    return false;
+function decodeCameraImage(data) {
+    if (data[0] <= 50 && data[1] <= 50 && data[2] >= 200) {
+        return false;
+    } else if (data[0] >= 200 && data[1] <= 50 && data[2] <= 50) {
+        return true;
+    } else {
+        return false;
+    }
+    
+    
 }
