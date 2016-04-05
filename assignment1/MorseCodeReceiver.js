@@ -38,13 +38,33 @@
  *         an 'on' (red) signal.
  */
 function decodeCameraImage(data) {
-    if (data[0] <= 50 && data[1] <= 50 && data[2] >= 200) {
+    var counter = 0;
+    var meanData = [0, 0, 0, 0];
+    
+    //Adds data into one 4 value array
+    for (i = 0; i < data.length; i++) {
+        meanData[counter] += data[i];
+        if (counter === 3) {
+            counter = 0;
+        } else {
+            counter++;
+        }
+    }
+        
+    for (i = 0; i < meanData.length; i++) {
+        meanData[i] = 4 * meanData[i] / (data.length + 1);
+    }
+    console.log(meanData);
+    
+    //Numbers below to be tweeked when access to actual camera is obtained.
+    if (meanData[0] <= 150 && meanData[1] <= 150 && meanData[2] >= 200) {
+        console.log(false);
         return false;
-    } else if (data[0] >= 200 && data[1] <= 50 && data[2] <= 50) {
+    } else if (meanData[0] >= 200 && meanData[1] <= 150 && meanData[2] <= 150) {
+        console.log(true);
         return true;
     } else {
+        console.log(false);
         return false;
     }
-    
-    
 }
