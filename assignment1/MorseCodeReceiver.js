@@ -25,8 +25,14 @@
 
 
 // ADD YOUR ADDITIONAL FUNCTIONS AND GLOBAL VARIABLES HERE
+var blueLength, redLength;
+function detectRedLength() {
+    
+}
 
-
+function detectBlueLength() {
+    
+}
 /*
  * This function is called once per unit of time with camera image data.
  * 
@@ -52,7 +58,7 @@ function decodeCameraImage(data) {
     for (i = 0; i < meanData.length; i++) {
         meanData[i] = 4 * meanData[i] / (data.length + 1);
     }
-    //If the camera is not producing the correct image shape (for example, using a different phone), then there will be many pixels where the value for RGBA is 0,0,0,0. To remove this, the following loop is used, exploiting the fact that Alpha should always be 255 for the video image.
+    //If the camera is not producing the correct image shape (for example, using a different phone), then there will be many pixels where the value for RGBA is 0,0,0,0, which may skew the average to the point where the red may not be recognised. To remove this, the following loop is used, exploiting the fact that Alpha should always be 255 for the video image.
     for (i = 0; i < meanData.length; i++) {
         meanData[i] = meanData[i] * 255 / meanData[3];
     }
