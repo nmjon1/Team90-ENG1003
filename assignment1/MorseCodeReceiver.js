@@ -25,14 +25,8 @@
 
 
 // ADD YOUR ADDITIONAL FUNCTIONS AND GLOBAL VARIABLES HERE
-var blueLength, redLength;
-function detectRedLength() {
-    
-}
 
-function detectBlueLength() {
-    
-}
+
 /*
  * This function is called once per unit of time with camera image data.
  * 
@@ -63,7 +57,7 @@ function decodeCameraImage(data) {
         meanData[i] = meanData[i] * 255 / meanData[3];
     }
     
-    //Numbers below to be tweeked when access to actual camera is obtained.
+    //Numbers below can be tweeked to account for various cameras.
     if (meanData[0] <= 150 && meanData[1] <= 150 && meanData[2] >= 200) {
         console.log(false);
         return false;
