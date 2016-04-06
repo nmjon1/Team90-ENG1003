@@ -38,6 +38,14 @@ function detectBlueLength() {
 
 }
 
+document.getElementById("restartButton").onclick = restartButtonClicked;
+function restartButtonClicked()
+{
+    document.getElementById('messageField').innerHTML = "";
+    signal_history = [];
+    current_letter = '';
+}
+
 function compare_arrays(a,b) {
     if (a === b) {return true}
     if (a.length != b.length) {return false}
@@ -50,13 +58,16 @@ function compare_arrays(a,b) {
     return true
 }
 
-function check_history (signal){
+function check_history (signal) {
     signal_history.push(signal);
-    console.log(signal_history);
-    if (compare_arrays(signal_history.slice(-4),[true, true, true, false])) {
+    if (compare_arrays(signal_history.slice(-4), [true, true, true, false])) {
         current_letter += 'B'
-    } else if (compare_arrays(signal_history.slice(-2),[true, false])) {
+    } else if (compare_arrays(signal_history.slice(-2), [true, false])) {
         current_letter += 'A'
+    } else if (compare_arrays(signal_history.slice(-7),[false,false,false,false,false,false,false])){
+        document.getElementById('messageField').innerHTML += ' ';
+        current_letter = '';
+        signal_history = [];
     } else if (compare_arrays(signal_history.slice(-4),[false, false, false, false])) {
         if (lookup[current_letter] == "End transmission") {
             messageFinished()
