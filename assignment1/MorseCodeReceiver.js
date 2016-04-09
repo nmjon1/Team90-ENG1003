@@ -36,7 +36,7 @@ var lookup=
  +BAAAA:"6", BBAAA:"7", BBBAA:"8", BBBBA:"9", BABBA:"(", BABBAB:")", 
  +ABAABA:'“', BAAAB: "=", ABBBBA: "'", BAABA:'/', ABABA:"+", BBBAAA:":", 
  +ABABAB:".", BBAABB:",", AABBAA:"?", BAAAAB:"-", ABBABA:"@", AAABAAB:"$", 
- +AABBAB:"_", BABABB:"!", ABAB:"<br>", AAABAB:"End transmission"};
+ +AABBAB:"_", BABABB:"!", ABAB:"\n", AAABAB:"End transmission"};
 // This is the object which is used to convert dots (A) and dashes (A) into characters
 
 document.getElementById("restartButton").onclick = restartButtonClicked;
@@ -57,8 +57,8 @@ function compare_arrays(a,b) {
     if (a.length != b.length) {return false} // If a and b are of differing lenth they can't be the same.
 
     for (i = 0; i < a.length; i++) {
-        // We loop througgh each element, checking that the elements are not different.
-        if (a[i] !== b[i]) {
+        // We loop througgh each element, checking that the elements are not different. Once this clears we can return true.
+        if (a[i] != b[i]) {
             return false
         }
     }
