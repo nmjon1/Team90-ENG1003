@@ -39,12 +39,14 @@ var lookup=
  +AABBAB:"_", BABABB:"!", ABAB:"\n", AAABAB:"End transmission"};
 // This is the object which is used to convert dots (A) and dashes (B) into characters
 
+
 document.getElementById("restartButton").onclick = restartButtonClicked;
+// Whenever the function is called, the restart button is activated which clears the message field and any temporary variables.
 function restartButtonClicked()
 {
-    document.getElementById('messageField').innerHTML = "";
-    signal_history = [];
-    current_element = '';
+    document.getElementById('messageField').innerHTML = ""; // Message field cleared
+    signal_history = []; // Temporary variable cleared
+    current_element = ''; // Temporary variable cleared
 }
 
 function compare_arrays(a,b) {
