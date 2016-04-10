@@ -41,9 +41,13 @@ var lookup=
 
 
 document.getElementById("restartButton").onclick = restartButtonClicked;
-// Whenever the function is called, the restart button is activated which clears the message field and any temporary variables.
+
 function restartButtonClicked()
 {
+ /* Whenever this function is called, the restart button is activated which clears the message field and any temporary variables.
+  * Inputs: none
+  * Outputs: none 
+  */
     document.getElementById('messageField').innerHTML = ""; // Message field cleared
     signal_history = []; // Temporary variable cleared
     current_element = ''; // Temporary variable cleared
