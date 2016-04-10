@@ -96,7 +96,7 @@ function check_history (signal) {
             document.getElementById('messageField').innerHTML += lookup[current_element]
         }
         current_element = ''
-    } else if (compare_arrays(signal_history.slice(-7),[false, false, false, false, false, false, false])) {
+    } if (compare_arrays(signal_history.slice(-7),[false, false, false, false, false, false, false])) {
         //  If there are 7 or more OFF signals in a row, we start a new word and add a space character to the message.
         document.getElementById('messageField').innerHTML += ' ';
         signal_history = [];
