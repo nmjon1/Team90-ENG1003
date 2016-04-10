@@ -97,7 +97,9 @@ function check_history (signal) {
         current_element = ''
     }
 }
-/*
+
+function decodeCameraImage(data) {
+ /*
  * This function is called once per unit of time with camera image data.
  * 
  * Input : Image Data. An array of integers representing a sequence of pixels.
@@ -106,7 +108,6 @@ function check_history (signal) {
  * Output: Returns a boolean denoting whether or not the image is 
  *         an 'on' (red) signal.
  */
-function decodeCameraImage(data) {
     var counter = 0;
     var meanData = [0, 0, 0, 0];
     //Adds all data into one 4 value array before finding the average.
@@ -126,17 +127,19 @@ function decodeCameraImage(data) {
         meanData[i] = meanData[i] * 255 / meanData[3];
     }
     
-    //Numbers below to be tweeked when access to actual camera is obtained.
     //The below code tests for whether the colour is blue, then red, before returning false, true, or false for the blue, red, or neither, respectively.
     if (meanData[0] <= 150 && meanData[1] <= 150 && meanData[2] >= 200) {
+     //Blue Colour
         console.log(false);
         check_history(false);
         return false;
     } else if (meanData[0] >= 200 && meanData[1] <= 150 && meanData[2] <= 150) {
+     //Red Colour
         console.log(true);
         check_history(true);
         return true;
     } else {
+     //Other Color
         console.log("other");
         return false;
     }
