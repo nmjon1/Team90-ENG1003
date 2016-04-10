@@ -28,28 +28,27 @@
 var signal_history = []; // Stores the entire history of the signal as an array. An on signal is stored as true, and off as false.
 var current_element = ''; // Stores the dots and dashes in the current element. A signifies a dot, B signifies a dash
 var lookup=
- +{AB:"a", BAAA: "b", BABA:"c", BAA:"d",A:"e", AABA:"f", 
- +BBA:"g", AAAA:"h", AA: "i", ABBB:"j", BAB: "k", ABAA:"l", 
- +BB:"m", BA:"n", BBB:"o", ABBA:"p", BBAB:"q", ABA:"r", AAA:"s", 
- +B:"t", AAB:"u", AAAB:"v", ABB:"w", BAAB:"x", BABB:"y", BBAA:"z", 
- +BBBB:"0", ABBBB:"1", AABBB:"2", AAABB:"3", AAAAB:"4", AAAAA:"5", 
- +BAAAA:"6", BBAAA:"7", BBBAA:"8", BBBBA:"9", BABBA:"(", BABBAB:")", 
- +ABAABA:'“', BAAAB: "=", ABBBBA: "'", BAABA:'/', ABABA:"+", BBBAAA:":", 
- +ABABAB:".", BBAABB:",", AABBAA:"?", BAAAAB:"-", ABBABA:"@", AAABAAB:"$", 
- +AABBAB:"_", BABABB:"!", ABAB:"\n", AAABAB:"End transmission"};
+ {AB:"a", BAAA: "b", BABA:"c", BAA:"d",A:"e", AABA:"f",
+ BBA:"g", AAAA:"h", AA: "i", ABBB:"j", BAB: "k", ABAA:"l",
+ BB:"m", BA:"n", BBB:"o", ABBA:"p", BBAB:"q", ABA:"r", AAA:"s",
+ B:"t", AAB:"u", AAAB:"v", ABB:"w", BAAB:"x", BABB:"y", BBAA:"z",
+ BBBB:"0", ABBBB:"1", AABBB:"2", AAABB:"3", AAAAB:"4", AAAAA:"5",
+ BAAAA:"6", BBAAA:"7", BBBAA:"8", BBBBA:"9", BABBA:"(", BABBAB:")",
+ ABAABA:'“', BAAAB: "=", ABBBBA: "'", BAABA:'/', ABABA:"+", BBBAAA:":",
+ ABABAB:".", BBAABB:",", AABBAA:"?", BAAAAB:"-", ABBABA:"@", AAABAAB:"$",
+ AABBAB:"_", BABABB:"!", ABAB:"\n", AAABAB:"End transmission"};
 // This is the object which is used to convert dots (A) and dashes (B) into characters
 
 
 document.getElementById("restartButton").onclick = restartButtonClicked;
 
-function restartButtonClicked()
-{
- /* Whenever this function is called, the restart button is activated which clears the message field and any temporary variables.
-  * Inputs: none
-  * Outputs: none 
-  */
+function restartButtonClicked() {
+    /* Called whenever the reset button is pressed. Clears the message field and global variables.
+     * Inputs: None
+     * Outputs: None
+     */
     document.getElementById('messageField').innerHTML = ""; // Message field cleared
-    signal_history = []; // Temporary variable cleared
+    signal_history = []; // Global signal history cleared so that we can start receiving the fresh signal.
     current_element = ''; // Temporary variable cleared
 }
 
@@ -90,6 +89,7 @@ function check_history (signal) {
     } else if (compare_arrays(signal_history.slice(-7),[false, false, false, false, false, false, false])){
         //  If there are 7 or more OFF signals in a row, we start a new word and add a space character to the message.
         document.getElementById('messageField').innerHTML += ' ';
+        signal_history = [];
         current_element = '';
     } else if (compare_arrays(signal_history.slice(-3),[false, false, false])) {
         // If there are 3 - 7 OFF signals in a row we add a character to the message and start a new one.
