@@ -86,11 +86,6 @@ function check_history (signal) {
     } else if (compare_arrays(signal_history.slice(-2), [true, false])) {
         // If there is only 1 ON signal followed by an OFF, we register a dot.
         current_element += 'A'
-    } else if (compare_arrays(signal_history.slice(-7),[false, false, false, false, false, false, false])){
-        //  If there are 7 or more OFF signals in a row, we start a new word and add a space character to the message.
-        document.getElementById('messageField').innerHTML += ' ';
-        signal_history = [];
-        current_element = '';
     } else if (compare_arrays(signal_history.slice(-3),[false, false, false])) {
         // If there are 3 - 7 OFF signals in a row we add a character to the message and start a new one.
         if (lookup[current_element] == "End transmission") {
@@ -101,6 +96,11 @@ function check_history (signal) {
             document.getElementById('messageField').innerHTML += lookup[current_element]
         }
         current_element = ''
+    } else if (compare_arrays(signal_history.slice(-7),[false, false, false, false, false, false, false])) {
+        //  If there are 7 or more OFF signals in a row, we start a new word and add a space character to the message.
+        document.getElementById('messageField').innerHTML += ' ';
+        signal_history = [];
+        current_element = '';
     }
 }
 
