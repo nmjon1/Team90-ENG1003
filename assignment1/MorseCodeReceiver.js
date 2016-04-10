@@ -128,12 +128,17 @@ function decodeCameraImage(data) {
     for (i = 0; i < meanData.length; i++) {
         meanData[i] = 4 * meanData[i] / (data.length + 1);
     }
-    //If the camera is not producing the correct image shape (for example, using a different phone, or the camera is in landscape mode), then there will be many pixels where the value for RGBA is 0,0,0,0, which may skew the average to the point where the red may not be recognised. To remove this, the following loop is used, exploiting the fact that Alpha should always be 255 for the video image.
+    // If the camera is not producing the correct image shape (for example, using a different phone,
+    // or the camera is in landscape mode), then there will be many pixels where the value for RGBA
+    // is 0,0,0,0, which may skew the average to the point where the red may not be recognised. To
+    // remove this, the following loop is used, exploiting the fact that Alpha should always be 255
+    // for the video image.
     for (i = 0; i < meanData.length; i++) {
         meanData[i] = meanData[i] * 255 / meanData[3];
     }
     
-    //The below code tests for whether the colour is blue, then red, before returning false, true, or false for the blue, red, or neither, respectively.
+    // The below code tests for whether the colour is blue, then red, before returning false, true,
+    // or false for the blue, red, or neither, respectively.
     if (meanData[0] <= 150 && meanData[1] <= 150 && meanData[2] >= 200) {
      //Blue Colour
         console.log(false);
