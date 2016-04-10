@@ -37,7 +37,7 @@ var lookup=
  +ABAABA:'“', BAAAB: "=", ABBBBA: "'", BAABA:'/', ABABA:"+", BBBAAA:":", 
  +ABABAB:".", BBAABB:",", AABBAA:"?", BAAAAB:"-", ABBABA:"@", AAABAAB:"$", 
  +AABBAB:"_", BABABB:"!", ABAB:"\n", AAABAB:"End transmission"};
-// This is the object which is used to convert dots (A) and dashes (A) into characters
+// This is the object which is used to convert dots (A) and dashes (B) into characters
 
 document.getElementById("restartButton").onclick = restartButtonClicked;
 function restartButtonClicked()
